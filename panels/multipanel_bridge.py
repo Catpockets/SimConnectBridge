@@ -310,7 +310,7 @@ while running:
                 elif mode == "HDG":
                     # Both physical rings produce the same HID signal, so use
                     # turn speed instead: deliberate turns remain one degree,
-                    # while rapid turns in the same direction move ten degrees.
+                    # while rapid turns in the same direction move five degrees.
                     now_ms = time.time() * 1000
                     direction = "INC" if cw else "DEC"
                     fast = (
@@ -321,7 +321,7 @@ while running:
                     last_heading_direction = direction
                     send_cmd_debounced(
                         f"HEADING_BUG_{direction}",
-                        repeat=10 if fast else 1,
+                        repeat=5 if fast else 1,
                     )
                 elif mode == "CRS":
                     send_cmd_debounced("VOR1_OBI_INC" if cw else "VOR1_OBI_DEC")
